@@ -50,9 +50,9 @@ module Cucumber
         cd(name)
         if @rails_version =~ /^3\./
           @world.announce('Adding gems to Gemfile')
-          append_to_file("Gemfile", 'gem "cucumber-rails"')
-          append_to_file("Gemfile", 'gem "capybara" , :git => "git://github.com/aslakhellesoy/capybara.git"')
-          append_to_file("Gemfile", 'gem "database_cleaner"')
+          append_line_to_file("Gemfile", 'gem "cucumber-rails"')
+          append_line_to_file("Gemfile", 'gem "capybara" , :git => "git://github.com/aslakhellesoy/capybara.git"')
+          append_line_to_file("Gemfile", 'gem "database_cleaner"')
         end
       end
 

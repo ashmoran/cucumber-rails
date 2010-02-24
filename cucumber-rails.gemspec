@@ -8,30 +8,28 @@ Gem::Specification.new do |s|
   s.version = "0.2.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Dennis Blöte", "Aslak Hellesøy", "Rob Holland"]
+  s.authors = ["Dennis Bl\303\266te", "Aslak Helles\303\270y", "Rob Holland"]
   s.date = %q{2010-02-24}
   s.description = %q{Cucumber Generators and Runtime for Rails}
   s.email = %q{cukes@googlegroups.com}
   s.extra_rdoc_files = [
-    "README.rdoc",
-     "README_DEVELOPMENT.rdoc"
+    "README.rdoc"
   ]
   s.files = [
     ".gitignore",
      "HACKING.rdoc",
      "History.txt",
      "README.rdoc",
-     "README_DEVELOPMENT.rdoc",
      "Rakefile",
      "VERSION",
      "cucumber-rails.gemspec",
-     "features/descriptions/walking_skeleton_rails2.feature",
+     "dev_tasks/cucumber.rake",
+     "dev_tasks/rspec.rake",
+     "dev_tasks/rvm.rake",
      "features/run_rails2.feature",
      "features/skeleton_rails2.feature",
      "features/skeleton_rails3.feature",
      "features/step_definitions/cucumber_rails_steps.rb",
-     "features/support/commands/rails_app.rb",
-     "features/support/commands/runner.rb",
      "features/support/env.rb",
      "features/support/matchers/files.rb",
      "generators/cucumber/USAGE",
@@ -59,9 +57,6 @@ Gem::Specification.new do |s|
      "spec/generators/cucumber/skeleton/skeleton_base_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb",
-     "tasks/cucumber.rake",
-     "tasks/rspec.rake",
-     "tasks/rvm.rake",
      "templates/feature/delete_feature.erb",
      "templates/feature/delete_steps.erb",
      "templates/feature/feature.erb",
@@ -96,7 +91,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/aslakhellesoy/cucumber-rails}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.6}
+  s.rubygems_version = %q{1.3.5}
   s.summary = %q{Cucumber Generators and Runtime for Rails}
   s.test_files = [
     "spec/cucumber/web/tableish_spec.rb",

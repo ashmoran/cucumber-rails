@@ -9,7 +9,13 @@ Given /^a Rails app "(.*)"$/ do |app_name|
 end
 
 When /^I run "([^\"]*)" in the app$/ do |command|
-  @last_command_output = @rails_app.run(command)
+  @rails_app.run(command)
+
+  # FIX are your eyes bleeding yet? :)
+  # Aslak plans to remove Rvm from cucumber-rails so this is just a temporary hack
+  @last_stdout      = @rvm.instance_variable_get("@last_stdout")
+  @last_exit_status = @rvm.instance_variable_get("@last_exit_status")
+  @last_stderr      = @rvm.instance_variable_get("@last_stderr")
 end
 
 Then /^I get the following new files and directories$/ do |files|
@@ -21,20 +27,4 @@ Then /^the files are configured for (?:.*)$/ do |files|
   files.hashes.each do |file|
     @rails_app.file(file[:name]).should have_contents(file[:contents])
   end
-end
-
-Then /^I should see "([^\"]*)"$/ do |expected_text|
-  @last_command_output.stdout.should include(expected_text)
-end
-
-Then /^I should see "([^\"]*)" in STDERR$/ do |expected_text|
-  @last_command_output.stderr.should include(expected_text)
-end
-
-Then /^the command should fail$/ do
-  @last_command_output.exit_status.should == 1
-end
-
-Then /^the command should succeed$/ do
-  @last_command_output.exit_status.should == 0
 end

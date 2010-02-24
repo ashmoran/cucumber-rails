@@ -63,10 +63,10 @@ end
 
 # Use this step when using multiple datetime_select helpers on a page or
 # you want to specify which datetime to select. Given the following view:
-#   <%= f.label :preferred %><br />
-#   <%= f.datetime_select :preferred %>
-#   <%= f.label :alternative %><br />
-#   <%= f.datetime_select :alternative %>
+#   <%%= f.label :preferred %><br />
+#   <%%= f.datetime_select :preferred %>
+#   <%%= f.label :alternative %><br />
+#   <%%= f.datetime_select :alternative %>
 # The following steps would fill out the form:
 # When I select "November 23, 2004 11:20" as the "Preferred" date and time
 # And I select "November 25, 2004 10:30" as the "Alternative" date and time
@@ -116,21 +116,21 @@ end
 
 # Adds support for validates_attachment_content_type. Without the mime-type getting
 # passed to attach_file() you will get a "Photo file is not one of the allowed file types."
-# error message 
+# error message
 When /^(?:|I )attach the file "([^\"]*)" to "([^\"]*)"$/ do |path, field|
   type = path.split(".")[1]
 
   case type
   when "jpg"
-    type = "image/jpg" 
+    type = "image/jpg"
   when "jpeg"
-    type = "image/jpeg" 
+    type = "image/jpeg"
   when "png"
-    type = "image/png" 
+    type = "image/png"
   when "gif"
     type = "image/gif"
   end
-  
+
   attach_file(field, path, type)
 end
 
@@ -144,7 +144,7 @@ end
 
 
 Then /^(?:|I )should see "([^\"]*)" on (.+)$/ do |text, page_name|
-  visit path_to(page_name) 
+  visit path_to(page_name)
   if defined?(Spec::Rails::Matchers)
     response.should contain(text)
   else
@@ -163,8 +163,8 @@ Then /^(?:|I )should see "([^\"]*)" within "([^\"]*)"$/ do |text, selector|
   end
 end
 
-Then /^(?:|I )should see "([^\"]*)" within "([^\"]*)" on (.+)$/ do |text, selector, page_name| 
-  visit path_to(page_name)   
+Then /^(?:|I )should see "([^\"]*)" within "([^\"]*)" on (.+)$/ do |text, selector, page_name|
+  visit path_to(page_name)
   within(selector) do |content|
     if defined?(Spec::Rails::Matchers)
       content.should contain(text)
@@ -177,7 +177,7 @@ end
 
 
 
-Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp| 
+Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
   regexp = Regexp.new(regexp)
   if defined?(Spec::Rails::Matchers)
     response.should contain(regexp)
@@ -186,8 +186,8 @@ Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
   end
 end
 
-Then /^(?:|I )should see \/([^\/]*)\/ on (.+)$/ do |regexp, page_name| 
-  visit path_to(page_name)   
+Then /^(?:|I )should see \/([^\/]*)\/ on (.+)$/ do |regexp, page_name|
+  visit path_to(page_name)
   regexp = Regexp.new(regexp)
   if defined?(Spec::Rails::Matchers)
     response.should contain(regexp)
@@ -208,8 +208,8 @@ Then /^(?:|I )should see \/([^\/]*)\/ within "([^\"]*)"$/ do |regexp, selector|
   end
 end
 
-Then /^(?:|I )should see \/([^\/]*)\/ within "([^\"]*)" on (.+)$/ do |regexp, selector, page_name| 
-  visit path_to(page_name)     
+Then /^(?:|I )should see \/([^\/]*)\/ within "([^\"]*)" on (.+)$/ do |regexp, selector, page_name|
+  visit path_to(page_name)
   within(selector) do |content|
     regexp = Regexp.new(regexp)
     if defined?(Spec::Rails::Matchers)
@@ -229,8 +229,8 @@ Then /^(?:|I )should not see "([^\"]*)"$/ do |text|
   end
 end
 
-Then /^(?:|I )should not see "([^\"]*)" on (.+)$/ do |text, page_name|  
-  visit path_to(page_name)  
+Then /^(?:|I )should not see "([^\"]*)" on (.+)$/ do |text, page_name|
+  visit path_to(page_name)
   if defined?(Spec::Rails::Matchers)
     response.should_not contain(text)
   else
@@ -250,7 +250,7 @@ Then /^(?:|I )should not see "([^\"]*)" within "([^\"]*)"$/ do |text, selector|
 end
 
 Then /^(?:|I )should not see "([^\"]*)" within "([^\"]*)" on (.+)$/ do |text, selector, page_name|
-  visit path_to(page_name)  
+  visit path_to(page_name)
   within(selector) do |content|
     if defined?(Spec::Rails::Matchers)
       content.should_not contain(text)
@@ -271,7 +271,7 @@ Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|
 end
 
 Then /^(?:|I )should not see \/([^\/]*)\/ on (.+)$/ do |regexp, page_name|
-  visit path_to(page_name)  
+  visit path_to(page_name)
   regexp = Regexp.new(regexp)
   if defined?(Spec::Rails::Matchers)
     response.should_not contain(regexp)
@@ -347,7 +347,7 @@ end
 Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
   actual_params   = CGI.parse(URI.parse(current_url).query)
   expected_params = Hash[expected_pairs.rows_hash.map{|k,v| [k,[v]]}]
- 
+
   if defined?(Spec::Rails::Matchers)
     actual_params.should == expected_params
   else
