@@ -2,7 +2,7 @@ Feature: Manage <%= plural_name %>
   In order to [goal]
   [stakeholder]
   wants [behaviour]
-  
+
   Scenario: Register new <%= singular_name %>
     Given I am on the new <%= singular_name %> page
 <% keyword = 'When' -%>
@@ -27,16 +27,16 @@ Feature: Manage <%= plural_name %>
   #
   # Capybara must use Culerity or Selenium2 (webdriver) when pages rely on
   # Javascript events. Only Culerity supports confirmation dialogs.
-  # 
-  # cucumber-rails will turn off transactions for scenarios tagged with 
-  # @selenium, @culerity, @javascript or @no-txn and clean the database with 
-  # DatabaseCleaner after the scenario has finished. This is to prevent data 
+  #
+  # cucumber-rails will turn off transactions for scenarios tagged with
+  # @selenium, @culerity, @javascript or @no-txn and clean the database with
+  # DatabaseCleaner after the scenario has finished. This is to prevent data
   # from leaking into the next scenario.
   #
   # Culerity has some performance overhead, and there are two alternatives to using
   # Culerity:
   #
-  # a) You can remove the @culerity tag and run everything in-process, but then you 
+  # a) You can remove the @culerity tag and run everything in-process, but then you
   # also have to modify your views to use <button> instead: http://github.com/jnicklas/capybara/issues#issue/12
   #
   # b) Replace the @culerity tag with @emulate_rails_javascript. This will detect
@@ -45,4 +45,16 @@ Feature: Manage <%= plural_name %>
   #
   # For convenience we're defaulting to @emulate_rails_javascript
   @emulate_rails_javascript
+<% end -%>
+  Scenario: Delete <%= singular_name %>
+    Given the following <%= plural_name %>:
+      |<%= named_args.map(&:name).join('|') %>|
+<% (1..4).each do |n| -%>
+      |<%= named_args.map{|arg| arg.value(n)}.join('|') %>|
+<% end -%>
+    When I delete the 3rd <%= singular_name %>
+    Then I should see the following <%= plural_name %>:
+      |<%= named_args.map{|arg| arg.name.humanize}.join('|') %>|
+<% [1,2,4].each do |n| -%>
+      |<%= named_args.map{|arg| arg.value(n)}.join('|') %>|
 <% end -%>
