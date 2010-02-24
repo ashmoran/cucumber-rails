@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dennis Bl\303\266te", "Aslak Helles\303\270y", "Rob Holland"]
-  s.date = %q{2010-02-19}
+  s.date = %q{2010-02-24}
   s.description = %q{Cucumber Generators and Runtime for Rails}
   s.email = %q{cukes@googlegroups.com}
   s.extra_rdoc_files = [
@@ -18,20 +18,16 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".gitignore",
+     "HACKING.rdoc",
      "History.txt",
      "README.rdoc",
      "Rakefile",
      "VERSION",
      "cucumber-rails.gemspec",
-     "cucumber.yml",
-     "features/descriptions/skeleton_rails2.feature",
-     "features/descriptions/skeleton_rails3.feature",
+     "features/skeleton_rails2.feature",
+     "features/skeleton_rails3.feature",
      "features/step_definitions/cucumber_rails_steps.rb",
-     "features/support/commands.rb",
-     "features/support/commands/rails_app.rb",
-     "features/support/commands/runner.rb",
      "features/support/env.rb",
-     "features/support/gemfiles/ruby_187_rails_2.gemfile",
      "features/support/matchers/files.rb",
      "generators/cucumber/USAGE",
      "generators/cucumber/cucumber_generator.rb",
@@ -42,6 +38,7 @@ Gem::Specification.new do |s|
      "lib/cucumber/rails/active_record.rb",
      "lib/cucumber/rails/capybara_javascript_emulation.rb",
      "lib/cucumber/rails/rspec.rb",
+     "lib/cucumber/rails/rvm.rb",
      "lib/cucumber/rails/test_unit.rb",
      "lib/cucumber/rails/world.rb",
      "lib/cucumber/web/tableish.rb",
@@ -52,12 +49,14 @@ Gem::Specification.new do |s|
      "lib/generators/cucumber/skeleton/USAGE",
      "lib/generators/cucumber/skeleton/skeleton_base.rb",
      "lib/generators/cucumber/skeleton/skeleton_generator.rb",
+     "rvm.yml",
      "spec/cucumber/web/tableish_spec.rb",
      "spec/generators/cucumber/skeleton/skeleton_base_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb",
      "tasks/cucumber.rake",
      "tasks/rspec.rake",
+     "tasks/rvm.rake",
      "templates/feature/feature.erb",
      "templates/feature/steps.erb",
      "templates/skeleton/config/cucumber.yml.erb",
@@ -87,7 +86,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/aslakhellesoy/cucumber-rails}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Cucumber Generators and Runtime for Rails}
   s.test_files = [
     "spec/cucumber/web/tableish_spec.rb",
@@ -101,14 +100,11 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<cucumber>, [">= 0.6.2"])
-      s.add_runtime_dependency(%q<thor-ext>, [">= 0"])
     else
       s.add_dependency(%q<cucumber>, [">= 0.6.2"])
-      s.add_dependency(%q<thor-ext>, [">= 0"])
     end
   else
     s.add_dependency(%q<cucumber>, [">= 0.6.2"])
-    s.add_dependency(%q<thor-ext>, [">= 0"])
   end
 end
 

@@ -1,10 +1,12 @@
+require 'cucumber/rails/rvm'
+
 desc "Prepare and run the features"
 task :cucumber => %w[ cucumber:prepare cucumber:run ]
 
 namespace :cucumber do
   desc "Run the Cucumber features without preparing RVM"
   task :run do
-    system "cucumber"
+    system "cucumber --tags ~@wip"
   end
   
   # TODO a task for this
@@ -26,7 +28,13 @@ namespace :cucumber do
   # local enviroments together for manual testing
   desc "Prepare RVM environments for Cucumber"
   task :prepare do
+<<<<<<< HEAD
     system "rvm 1.9.1%cucumber-rails -S rake install"
     system "rvm 1.8.7%cucumber-rails -S rake install"
+=======
+    Cucumber::Rails::Rvm.each do |rvm|
+      rvm.rvm('-S rake install')
+    end
+>>>>>>> 2bc67dd834b3897a1afaeb7bc2cb19840a612369
   end
 end
