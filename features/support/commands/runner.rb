@@ -6,15 +6,16 @@ class Commands
       @directory = directory
       @ruby_version = ruby_version
       @rails_version = rails_version
-      @command_history = []
+    end
+
+    # This is the most fundamental method - every command
+    # must go through this to have the correct Ruby version
+    def rvm(command)
+      run_and_log("rvm #{@ruby_version}%cucumber-rails -S #{command}")
     end
 
     def rails(options)
       rvm("rails _#{@rails_version}_ #{options}")
-    end
-
-    def rvm(command)
-      run_and_log("rvm #{@ruby_version}%cucumber-rails -S #{command}")
     end
 
     def chmod(*args)
@@ -41,20 +42,28 @@ class Commands
       stderr_file.close
       in_runner_dir do
         mode = RUBY_VERSION =~ /^1\.9/ ? {:external_encoding=>"UTF-8"} : 'r'
-        IO.popen("#{command} 2> #{stderr_file.path}", mode) do |io|
-          last_stdout = io.read
-        end
+        last_stdout = `#{command} 2> #{stderr_file.path}`
       end
       last_exit_status = $?.exitstatus
       last_stderr = IO.read(stderr_file.path)
 
-      if last_exit_status != 0
-        raise "ERROR:#{last_exit_status}:command\n\n#{last_stdout}\n--------------\n#{last_stderr}"
-      end
+      CommandOutput.new(last_exit_status, last_stdout, last_stderr)
+      # if last_exit_status != 0
+      #   raise "ERROR:#{last_exit_status}:command\n\n#{last_stdout}\n--------------\n#{last_stderr}"
+      # end
     end
 
     def in_runner_dir
       Dir.chdir(@directory) { yield }
+    end
+
+    class CommandOutput
+      attr_reader :exit_status, :stdout, :stderr
+      def initialize(exit_status, stdout, stderr)
+        @exit_status = exit_status
+        @stdout = stdout
+        @stderr = stderr
+      end
     end
   end
 end

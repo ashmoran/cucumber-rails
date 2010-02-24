@@ -9,8 +9,13 @@ class Commands
       @runner = runner
     end
 
-    def script(options)
-      @runner.rvm("script/#{options}")
+    # TODO currently redundant
+    # def script(options)
+    #   @runner.rvm("script/#{options}")
+    # end
+
+    def run(command)
+      @runner.rvm(command)
     end
 
     def files
@@ -30,8 +35,13 @@ class Commands
       prepare_app
     end
 
-    def rails(options)
-      @runner.rails(options)
+    # TODO currently redundant
+    # def rails(options)
+    #   @runner.rails(options)
+    # end
+
+    def run(command)
+      @runner.rvm(command)
     end
 
     def files

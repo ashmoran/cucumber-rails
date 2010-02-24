@@ -1,0 +1,4 @@
+Make sure you install the gem to the right RVM Ruby/gemset, and switch
+to it before manual testing
+
+TODO AppleScript to switch environment?

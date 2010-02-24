@@ -8,12 +8,13 @@ Gem::Specification.new do |s|
   s.version = "0.2.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Dennis Blöte", "Aslak Hellesøy", "Rob Holland"]
-  s.date = %q{2010-02-16}
+  s.authors = ["Dennis Bl\303\266te", "Aslak Helles\303\270y", "Rob Holland"]
+  s.date = %q{2010-02-19}
   s.description = %q{Cucumber Generators and Runtime for Rails}
   s.email = %q{cukes@googlegroups.com}
   s.extra_rdoc_files = [
-    "README.rdoc"
+    "README.rdoc",
+     "README_DEVELOPMENT.rdoc"
   ]
   s.files = [
     ".gitignore",
@@ -34,6 +35,7 @@ Gem::Specification.new do |s|
      "features/support/matchers/files.rb",
      "generators/cucumber/USAGE",
      "generators/cucumber/cucumber_generator.rb",
+     "generators/cucumber/templates/step_definitions/web_steps_ja.rb.erb",
      "generators/feature/USAGE",
      "generators/feature/feature_generator.rb",
      "lib/cucumber/rails/action_controller.rb",

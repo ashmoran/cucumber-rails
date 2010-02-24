@@ -12,6 +12,7 @@ begin
     gemspec.homepage = "http://github.com/aslakhellesoy/cucumber-rails"
 
     gemspec.add_dependency 'cucumber', '>= 0.6.2'
+    gemspec.add_dependency 'database_cleaner', '>= 0.4.3'
     gemspec.add_dependency 'thor-ext'
   end
   Jeweler::GemcutterTasks.new
