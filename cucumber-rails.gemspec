@@ -5,10 +5,10 @@
 
 Gem::Specification.new do |s|
   s.name = %q{cucumber-rails}
-  s.version = "0.2.5"
+  s.version = "0.2.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Dennis Bl\303\266te", "Aslak Helles\303\270y", "Rob Holland"]
+  s.authors = ["Dennis Blöte", "Aslak Hellesøy", "Rob Holland"]
   s.date = %q{2010-02-24}
   s.description = %q{Cucumber Generators and Runtime for Rails}
   s.email = %q{cukes@googlegroups.com}
@@ -70,17 +70,20 @@ Gem::Specification.new do |s|
      "templates/skeleton/step_definitions/web_steps_no.rb.erb",
      "templates/skeleton/step_definitions/web_steps_pt-BR.rb.erb",
      "templates/skeleton/step_definitions/webrat_steps.rb.erb",
-     "templates/skeleton/support/_rails3_beta.rb.erb",
      "templates/skeleton/support/_rails_each_run.rb",
-     "templates/skeleton/support/_rails_prefork.rb.erb",
-     "templates/skeleton/support/capybara.rb",
+     "templates/skeleton/support/capybara_drivers.rb.erb",
      "templates/skeleton/support/edit_warning.txt",
      "templates/skeleton/support/paths.rb",
-     "templates/skeleton/support/rails.rb.erb",
-     "templates/skeleton/support/rails3.rb.erb",
-     "templates/skeleton/support/rails3_spork.rb.erb",
-     "templates/skeleton/support/rails_spork.rb.erb",
-     "templates/skeleton/support/webrat.rb",
+     "templates/skeleton/support/rails2/capybara.rb.erb",
+     "templates/skeleton/support/rails2/env.rb.erb",
+     "templates/skeleton/support/rails2/env_config.rb.erb",
+     "templates/skeleton/support/rails2/env_spork.rb.erb",
+     "templates/skeleton/support/rails2/webrat.rb.erb",
+     "templates/skeleton/support/rails3/capybara.rb.erb",
+     "templates/skeleton/support/rails3/env.rb.erb",
+     "templates/skeleton/support/rails3/env_config.rb.erb",
+     "templates/skeleton/support/rails3/env_spork.rb.erb",
+     "templates/skeleton/support/rails3/webrat.rb.erb",
      "templates/skeleton/tasks/cucumber.rake.erb"
   ]
   s.homepage = %q{http://github.com/aslakhellesoy/cucumber-rails}

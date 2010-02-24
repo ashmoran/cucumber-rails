@@ -7,9 +7,9 @@ end
 
 if defined?(ActiveRecord::Base)
   if Rails.version.to_f >= 3.0
-    require 'rails/test_help' 
+    require 'rails/test_help'
   else
-    require 'test_help' 
+    require 'test_help'
   end
 else
   # I can't do rescue LoadError because in this files could be loaded
@@ -27,7 +27,7 @@ require 'cucumber/rails/test_unit'
 require 'cucumber/rails/action_controller'
 
 
-if (::Rails.respond_to?(:application) && !(::Rails.application.config.cache_classes)) || 
+if (::Rails.respond_to?(:application) && !(::Rails.application.config.cache_classes)) ||
   (!(::Rails.respond_to?(:application)) && ::Rails.respond_to?(:configuration) && !(::Rails.configuration.cache_classes))
   warn "WARNING: You have set Rails' config.cache_classes to false (most likely in config/environments/cucumber.rb).  This setting is known to break Cucumber's use_transactional_fixtures method. Set config.cache_classes to true if you want to use transactional fixtures.  For more information see https://rspec.lighthouseapp.com/projects/16211/tickets/165."
 end

@@ -21,6 +21,8 @@ module Cucumber
 
       # Creates templates
       def create_templates(m = self, rails2 = false)
+        @rails_version = 3 if !rails2
+        # puts "Using rails_version='#{rails_version}' (should be 2 or 3)"
         m.template 'config/cucumber.yml.erb', 'config/cucumber.yml'
         if rails2
           m.template 'environments/cucumber.rb.erb', 'config/environments/cucumber.rb'
@@ -28,9 +30,8 @@ module Cucumber
       end
 
       def configure_gemfile(m = self, rails2 = false)
-        require 'thor-ext'
         unless rails2
-          puts "Update Rails 3 Gemfile for cucumber"
+          require 'thor-ext'
           gsub_file 'Gemfile', /('|")gem/, "\1\ngem"
           add_gem('database_cleaner', '>=0.5.0') unless has_plugin? 'database_cleaner'
           if driver == :capybara
@@ -39,13 +40,12 @@ module Cucumber
             add_gem('webrat', '>=0.7.0') unless has_plugin? 'webrat'
           end
           if framework == :rspec
-            add_gem('rspec', '>=1.3.0') unless has_plugin? 'rspec'
-            add_gem('rspec-rails', '>=1.3.2') unless has_plugin? 'rspec-rails'
+            add_gem('rspec-rails', '>=2.0.0') unless has_plugin? 'rspec-rails'
           end
           if spork?
-            add_gem('spork''>=0.7.5') unless has_plugin? 'spork'
+            add_gem('spork', '>=0.7.5') unless has_plugin? 'spork'
           end
-          add_gems(%w{cucumber cucumber-rails})
+          add_gem('cucumber-rails', '>=0.2.6')
         end
       end
 
@@ -79,19 +79,21 @@ module Cucumber
           m.file      'support/paths.rb', 'features/support/paths.rb'
 
           if spork?
-            m.template 'support/rails_spork.rb.erb', 'features/support/env.rb'
+            m.template 'support/rails2/env_spork.rb.erb', 'features/support/env.rb'
           else
-            m.template 'support/rails.rb.erb',       'features/support/env.rb'
+            m.template 'support/rails2/env.rb.erb',       'features/support/env.rb'
           end
+
         else
           m.empty_directory 'features/support'
           m.copy_file 'support/paths.rb', 'features/support/paths.rb'
 
           if spork?
-            m.template 'support/rails3_spork.rb.erb', 'features/support/env.rb'
+            m.template 'support/rails3/env_spork.rb.erb', 'features/support/env.rb'
           else
-            m.template 'support/rails3.rb.erb',       'features/support/env.rb'
+            m.template 'support/rails3/env.rb.erb',       'features/support/env.rb'
           end
+
         end
       end
 
