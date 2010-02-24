@@ -8,7 +8,7 @@ namespace :cucumber do
   task :run do
     system "cucumber --tags ~@wip"
   end
-  
+
   # TODO a task for this
   # 1.9.1 / Rails 3
   # cd rails/rails3
@@ -28,13 +28,8 @@ namespace :cucumber do
   # local enviroments together for manual testing
   desc "Prepare RVM environments for Cucumber"
   task :prepare do
-<<<<<<< HEAD
-    system "rvm 1.9.1%cucumber-rails -S rake install"
-    system "rvm 1.8.7%cucumber-rails -S rake install"
-=======
     Cucumber::Rails::Rvm.each do |rvm|
       rvm.rvm('-S rake install')
     end
->>>>>>> 2bc67dd834b3897a1afaeb7bc2cb19840a612369
   end
 end
