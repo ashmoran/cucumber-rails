@@ -21,12 +21,17 @@ Gem::Specification.new do |s|
      "HACKING.rdoc",
      "History.txt",
      "README.rdoc",
+     "README_DEVELOPMENT.rdoc",
      "Rakefile",
      "VERSION",
      "cucumber-rails.gemspec",
+     "features/descriptions/walking_skeleton_rails2.feature",
+     "features/run_rails2.feature",
      "features/skeleton_rails2.feature",
      "features/skeleton_rails3.feature",
      "features/step_definitions/cucumber_rails_steps.rb",
+     "features/support/commands/rails_app.rb",
+     "features/support/commands/runner.rb",
      "features/support/env.rb",
      "features/support/matchers/files.rb",
      "generators/cucumber/USAGE",
@@ -57,6 +62,8 @@ Gem::Specification.new do |s|
      "tasks/cucumber.rake",
      "tasks/rspec.rake",
      "tasks/rvm.rake",
+     "templates/feature/delete_feature.erb",
+     "templates/feature/delete_steps.erb",
      "templates/feature/feature.erb",
      "templates/feature/steps.erb",
      "templates/skeleton/config/cucumber.yml.erb",
@@ -103,11 +110,17 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<cucumber>, [">= 0.6.2"])
+      s.add_runtime_dependency(%q<database_cleaner>, [">= 0.4.3"])
+      s.add_runtime_dependency(%q<thor-ext>, [">= 0"])
     else
       s.add_dependency(%q<cucumber>, [">= 0.6.2"])
+      s.add_dependency(%q<database_cleaner>, [">= 0.4.3"])
+      s.add_dependency(%q<thor-ext>, [">= 0"])
     end
   else
     s.add_dependency(%q<cucumber>, [">= 0.6.2"])
+    s.add_dependency(%q<database_cleaner>, [">= 0.4.3"])
+    s.add_dependency(%q<thor-ext>, [">= 0"])
   end
 end
 

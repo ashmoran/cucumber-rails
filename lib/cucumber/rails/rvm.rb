@@ -3,7 +3,7 @@ module Cucumber
     # This class is only used for testing Cucumber-Rails
     class Rvm #:nodoc:
       RVMS = YAML.load_file(File.dirname(__FILE__) + '/../../../rvm.yml')
-      
+
       class << self
         def each(&proc)
           RVMS['rubies'].each do |ruby_name, ruby_version|
@@ -24,7 +24,7 @@ module Cucumber
         require 'aruba/api'
         include Aruba::Api
       rescue LoadError => ignore
-        STDOUT.puts "The aruba gem ins not installed. That's ok." 
+        STDOUT.puts "The aruba gem is not installed. That's ok."
         def run(cmd)
           system(cmd)
         end
@@ -56,6 +56,10 @@ module Cucumber
         end
       end
 
+      def create_gemsets
+        rvm("gems create 'cucumber-rails-#{@rails_version}'")
+      end
+
       def install_gems
         @gems_with_version.each do |gem_with_version|
           rvm("-S gem install #{gem_with_version}")
@@ -66,13 +70,13 @@ module Cucumber
         RailsApp.new(name, self)
       end
     end
-    
+
     class RailsApp
       def initialize(name, rvm)
         @name, @rvm = name, rvm
         create!
       end
-      
+
       def create!
         @rvm.rails_create(@name)
       end
